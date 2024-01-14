@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { Cairo } from "next/font/google"
-import "@/app/globals.css"
+import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"

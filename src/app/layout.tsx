@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import ClientLayout from "./client"
+import ClientLayout from "@/app/client"
 
 export const metadata: Metadata = {
   title: "الملف الشخصي",
