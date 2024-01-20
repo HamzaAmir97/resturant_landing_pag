@@ -9,8 +9,8 @@ export default function Home() {
    
   
       <div className="bg-blue-500 text-white p-6 text-center text-2xl">
-      Tailwind is working!
-    </div>
+      <p className="text-red-500">Tailwind is working!</p>
+       </div>
      
     
   )

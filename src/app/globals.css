@@ -2,29 +2,273 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-:root {
-  --primary: #0070f3;
-  --primary-foreground: #ffffff;
-  --background: #ffffff;
-  --foreground: #000000;
-  --muted: #f5f5f5;
-  --muted-foreground: #737373;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
+  /* Default theme (green) */
   :root {
-    --primary: #0070f3;
-    --primary-foreground: #ffffff;
-    --background: #000000;
-    --foreground: #ffffff;
-    --muted: #262626;
-    --muted-foreground: #a3a3a3;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+  
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    
+    --primary: 164.3 48.7% 56.1%; /* Green primary */
+    --primary-foreground: 210 40% 98%; /* White text on green */
+    
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 164.3 48.7% 56.1%; /* Green ring */
+    --radius: 0.5rem;
+  }
+
+  /* Green theme */
+  [data-theme-color="green"] {
+    --primary: 164.3 48.7% 56.1%;
+    --primary-foreground:210 40% 98%;
+    --ring: 164.3 48.7% 56.1%;
+  }
+
+  /* Purple theme */
+  [data-theme-color="purple"] {
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 40% 98%;
+    --ring: 262.1 83.3% 57.8%;
+  }
+
+  /* Orange theme */
+  [data-theme-color="orange"] {
+    --primary: 24.6 95% 53.1%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --ring: 24.6 95% 53.1%;
+  }
+
+  /* Pink theme */
+  [data-theme-color="pink"] {
+    --primary: 340 82% 52%;
+    --primary-foreground: 210 40% 98%;
+    --ring: 340 82% 52%;
+  }
+
+  /* Red theme */
+  [data-theme-color="red"] {
+    --primary: 0 72.2% 50.6%;
+    --primary-foreground: 210 40% 98%;
+    --ring: 0 72.2% 50.6%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 164.3 48.7% 56.1%; /* Green primary */
+    --primary-foreground: 210 40% 98%; /* White text on green */
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+  }
+
+  /* Dark mode theme color variations */
+  .dark[data-theme-color="green"] {
+    --primary: 164.3 48.7% 56.1%;
+    --ring: 164.3 48.7% 56.1%;
+  }
+
+  .dark[data-theme-color="purple"] {
+    --primary: 263.4 70% 50.4%;
+    --ring: 263.4 70% 50.4%;
+  }
+
+  .dark[data-theme-color="orange"] {
+    --primary: 20.5 90.2% 48.2%;
+    --ring: 20.5 90.2% 48.2%;
+  }
+
+  .dark[data-theme-color="pink"] {
+    --primary: 336 80% 58%;
+    --ring: 336 80% 58%;
+  }
+
+  .dark[data-theme-color="red"] {
+    --primary: 0 72.2% 50.6%;
+    --ring: 0 72.2% 50.6%;
   }
 }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Improve dark mode transitions */
+  html.dark {
+    color-scheme: dark;
+  }
 }
+
+/* Animation for the hero section particles */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Theme transition */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 400ms, transform 400ms;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms;
+}
+
+/* Section animations */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered animation delay classes */
+.delay-100 {
+  transition-delay: 100ms;
+}
+.delay-200 {
+  transition-delay: 200ms;
+}
+.delay-300 {
+  transition-delay: 300ms;
+}
+.delay-400 {
+  transition-delay: 400ms;
+}
+.delay-500 {
+  transition-delay: 500ms;
+}
+
+/* Hover animations */
+.hover-lift {
+  transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.1);
+}
+
+/* Color theme switcher styles */
+.color-swatch {
+  @apply w-6 h-6 rounded-full cursor-pointer border-2 border-transparent transition-all;
+}
+
+.color-swatch.active {
+  @apply border-white shadow-lg scale-110;
+}
+
+.color-swatch-blue {
+  background-color: hsl(221.2, 83.2%, 53.3%);
+}
+.color-swatch-green {
+  background-color: hsl(142.1, 76.2%, 36.3%);
+}
+.color-swatch-purple {
+  background-color: hsl(262.1, 83.3%, 57.8%);
+}
+.color-swatch-orange {
+  background-color: hsl(24.6, 95%, 53.1%);
+}
+.color-swatch-pink {
+  background-color: hsl(340, 82%, 52%);
+}
+.color-swatch-red {
+  background-color: hsl(0, 72.2%, 50.6%);
+}
+
